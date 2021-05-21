@@ -1,9 +1,16 @@
 export interface TodoState {
-  todos: any[];
+  todos: Todo[];
   loading: boolean;
   error: string | null;
   page: number;
   limit: number;
+}
+
+export interface Todo {
+  userId: number;
+  id: number;
+  title: string;
+  completed: boolean;
 }
 
 export enum TodoActionTypes {

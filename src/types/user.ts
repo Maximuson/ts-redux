@@ -1,7 +1,20 @@
 export interface UserState {
-  users: any[];
+  users: IUser[];
   loading: boolean;
   error: null | string;
+}
+interface IUserAddress {
+  street: string;
+  suite: string;
+  city: string;
+  zipcode: string;
+}
+export interface IUser {
+  id: number;
+  name: string;
+  username: string;
+  email: string;
+  address: IUserAddress | any;
 }
 
 export enum UserActionTypes {
