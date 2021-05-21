@@ -67,7 +67,11 @@ const UsersList: React.FC = () => {
               <td>
                 {typeof item.address[addressType] === "object"
                   ? Object.entries(item.address[addressType]).map((item) => {
-                      return `${item[0]}: ${item[1]} `;
+                      return (
+                        <>
+                          <span className="font-weight-bold">{item[0]}:</span> <span>{item[1]} </span>{" "}
+                        </>
+                      );
                     })
                   : item.address[addressType]}
               </td>
