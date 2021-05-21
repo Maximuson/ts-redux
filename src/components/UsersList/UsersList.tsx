@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useTypedSelector } from "../../hooks/useTypedSelector";
 import { useActions } from "../../hooks/useActions";
 import { Form, Table } from "react-bootstrap";
+import StringifyObject from "./../Common/StringifyObject";
 
 const UsersList: React.FC = () => {
   const { users, loading, error } = useTypedSelector((state) => state.user);
@@ -65,15 +66,20 @@ const UsersList: React.FC = () => {
               <td>{item.username}</td>
               <td>{item.email}</td>
               <td>
-                {typeof item.address[addressType] === "object"
-                  ? Object.entries(item.address[addressType]).map((item) => {
+                {typeof item.address[addressType] === "object" ? (
+                  <StringifyObject
+                    object={item.address[addressType]}
+                    renderItem={(key, value) => {
                       return (
                         <>
-                          <span className="font-weight-bold">{item[0]}:</span> <span>{item[1]} </span>{" "}
+                          <span className="font-weight-bold">{key}:</span> <span>{value} </span>
                         </>
                       );
-                    })
-                  : item.address[addressType]}
+                    }}
+                  />
+                ) : (
+                  item.address[addressType]
+                )}
               </td>
             </tr>
           ))}
